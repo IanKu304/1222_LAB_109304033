@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            
+            function start(){
+                var button = document.getElementById("roll_buttom")
+                button.addEventListener("click", roll_dice)
+                die1Image = document.getElementById("die1")
+                die2Image = document.getElementById("die2")
+                die3Image = document.getElementById("die3")
+                die4Image = document.getElementById("die4")
+            }
+            function set_img(die){
+                var dieValue = Math.floor(1+Math.random()*6)
+                die.setArrtibute("src","die"+dieValue +".png")
+                die.setArrtibute("alt","die image with"+dieValue +"spot(s)")
+            }
+            function roll_dice(){
+                set_img(die1Image)
+                set_img(die2Image)
+                set_img(die3Image)
+                set_img(die4Image)
+            }
+            window.addEventListener("load",start)
+        </script>
+        <form action="#">
+            <input type="button" value="Roll Dice" id="roll_buttom">
+        </form>
+        
+        <img id = "die1" src="die1.png" alt="blank image">
+        <img id = "die2" src="die1.png" alt="blank image">
+        <img id = "die3" src="die1.png" alt="blank image">
+        <img id = "die4" src="die1.png" alt="blank image">
+    </body>
+</html>
