@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            var diceImages = [];
+            var rolls = 0;
+            var faceCounts = [0, 0, 0, 0, 0, 0]; // Array to store counts for each face
+
+            function start(){
+                var button = document.getElementById("roll_button")
+                button.addEventListener("click", roll_dice)
+
+                // Get all dice images
+                for (var i = 1; i <= 12; i++) {
+                    diceImages.push(document.getElementById("die" + i));
+                }
+            }
+
+            function set_img(die){
+                var dieValue = Math.floor(1 + Math.random() * 6)
+                die.setAttribute("src", "die" + dieValue + ".png")
+                die.setAttribute("alt", "die image with " + dieValue + " spot(s)")
+
+                // Update faceCounts array
+                faceCounts[dieValue - 1]++;
+            }
+
+            function roll_dice(){
+                rolls += 12; // Update the total number of rolls
+
+                // Roll 12 dice and update faceCounts
+                for (var i = 0; i < 12; i++) {
+                    set_img(diceImages[i]);
+                }
+
+                // Calculate and display probabilities
+                display_probabilities();
+            }
+
+            function display_probabilities() {
+                var probabilities = document.getElementById("probabilities");
+                probabilities.innerHTML = "<h3>Probability of each face:</h3>";
+
+                for (var i = 0; i < faceCounts.length; i++) {
+                    var probability = (faceCounts[i] / rolls) * 100;
+                    probabilities.innerHTML += "Face " + (i + 1) + ": " + probability.toFixed(2) + "%<br>";
+                }
+            }
+
+            window.addEventListener("load", start)
+        </script>
+        <form action="#">
+            <input type="button" value="Roll Dice" id="roll_button">
+        </form>
+
+        <div id="probabilities"></div>
+
+        <!-- Add more dice images as needed -->
+        <img id="die1" src="die1.png" alt="blank image">
+        <img id="die2" src="die1.png" alt="blank image">
+        <img id="die3" src="die1.png" alt="blank image">
+        <img id="die4" src="die1.png" alt="blank image">
+        <img id="die5" src="die1.png" alt="blank image">
+        <img id="die6" src="die1.png" alt="blank image">
+        <img id="die7" src="die1.png" alt="blank image">
+        <img id="die8" src="die1.png" alt="blank image">
+        <img id="die9" src="die1.png" alt="blank image">
+        <img id="die10" src="die1.png" alt="blank image">
+        <img id="die11" src="die1.png" alt="blank image">
+        <img id="die12" src="die1.png" alt="blank image">
+    </body>
+</html>
